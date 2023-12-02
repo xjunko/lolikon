@@ -1,6 +1,9 @@
 # Lolikon 
 Simple C wrapper for the amazing [[oppai-ng]](https://github.com/Francesco149/oppai-ng) library!
 
+## Install
+`v install https://github.com/xjunko/lolikon`
+
 ## Features
 * Everything that oppai-ng does.
 
