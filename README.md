@@ -8,6 +8,7 @@ Simple C wrapper for the amazing [[oppai-ng]](https://github.com/Francesco149/op
 * Everything is translated as is, the only thing that's different is the function name; `ezpp_new()` become `new()`, except for one function, `ezpp_free()`.
 
 ## Examples
+Simple API
 ```v
 import lolikon
 
@@ -21,4 +22,23 @@ fn main() {
     println("PP: ${calc_pp} | Stars: ${calc_stars}")
 }
 
+```
+Underlying API
+```v
+import lolikon
+
+fn main() {
+    beatmap_path := "~/ばか/maps/1.osu"
+    beatmap_mods := 0
+
+    ctx = lolikon.new()
+
+    lolikon.set_mods(ctx, beatmap_mods)
+    lolikon.set_map(ctx, beatmap_path)
+
+    calc_pp := lolikon.pp(ctx)
+    calc_stars := lolikon.stars(ctx)
+
+    println("PP: ${calc_pp} | Stars: ${calc_stars}")
+}
 ```
