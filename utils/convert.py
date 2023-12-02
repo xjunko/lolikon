@@ -98,4 +98,36 @@ for line in bruh.split("\n"):
         .replace("ezpp_t", "EZPP_PTR")
     )
 
+    # V wrap
     print("fn C.", fn_name, "(", fn_arg, ") ", ret_ptr, ret_typ, sep="")
+
+    # API convered
+    fn_arg_converted = [arg for arg in fn_arg.replace(",", "").split(" ")]
+    fn_arg_no_type = []
+
+    for n, arg in enumerate(fn_arg_converted):
+        if arg == "EZPP_PTR":
+            fn_arg_converted[n] = "ez " + arg
+            fn_arg_no_type.append("ez")
+        else:
+            fn_arg_converted[n] = f"value_{n} " + arg
+            fn_arg_no_type.append(f"value_{n}")
+
+    fn_arg_converted = ", ".join(fn_arg_converted)
+    fn_arg_no_type = ", ".join(fn_arg_no_type)
+
+    print(
+        "pub fn ",
+        fn_name.replace("ezpp_", ""),
+        "(",
+        fn_arg_converted,
+        ") ",
+        ret_ptr,
+        ret_typ,
+        " { ",
+        ["", "return "][int(len(ret_typ) > 0)],
+        f"C.{fn_name}({fn_arg_no_type})",
+        " }",
+        sep="",
+    )
+    print()
