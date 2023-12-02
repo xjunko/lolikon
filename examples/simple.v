@@ -1,12 +1,11 @@
-module main
-
 import lolikon
 
-// Simple API wrapper around `oppai-ng`. <br/>
-// Any more than this, you should use the underlying api instead. <br/>
-// Refer to `oppai.c.v`
-
 fn main() {
-	println(lolikon.calculate_pp('/run/media/junko/Second/Games/osu!/Songs/10418 supercell - Kimi no Shiranai Monogatari/supercell - Kimi no Shiranai Monogatari (Ex Boy) [Ex Hard].osu',
-		64))
+	beatmap_path := '/run/media/junko/Second/Games/osu!/Songs/10418 supercell - Kimi no Shiranai Monogatari/supercell - Kimi no Shiranai Monogatari (Ex Boy) [Ex Hard].osu'
+	beatmap_mods := 0
+
+	calc_pp := lolikon.calculate_pp(beatmap_path, beatmap_mods)
+	calc_stars := lolikon.calculate_stars(beatmap_path, beatmap_mods)
+
+	println('PP: ${calc_pp} | Stars: ${calc_stars}')
 }
